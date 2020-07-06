@@ -1,0 +1,52 @@
+{% load static %}
+<html>
+<head>
+    <title>assignment search</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+    <center><h3>Your Search Results</h3></center><br>
+    <div class="ml-5">
+        {% if n|length < 1 %}
+            <p>No search results </p>
+            Your search query:<b>{{ z }}</b>-did not match any documents.
+            Suggestions:
+
+            <ul>
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try different keywords.</li>
+
+            </ul>
+        {% endif %}
+    </div>
+
+
+ {% for k in n %}
+       <div class="container-md my-5 c">
+            <div class="alert alert-success ml-5 mr-5 mt-5" role="alert">
+              <h4 class="alert-heading">{{k.title}}</h4>
+              <p>{{k.content}}</p>
+              <hr>
+              <p class="mb-0">{{k.timestamp}} </p>
+              {% if k.pdf %}
+                <a href="{{ k.pdf.url }}" class="btn btn-dark btn-sm mt-2">view pdf</a>
+              {% endif %}
+
+            </div>
+        </div>
+            <br>
+            <br>
+ {% endfor %}
+
+</body>
+</html>

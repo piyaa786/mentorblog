@@ -1,0 +1,202 @@
+{% load static %}
+
+<html>
+<title>allblogs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<style>
+
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+.p{width:80%;}
+
+.container{margin-left:50px;}
+.media-body h5{margin-top:10px;}
+
+@media(max-width:1080px){
+.media-body p{font-size:13px;}
+}
+@media(max-width:550px){
+.media{display:block;}
+.media-body p{font-size:13px;}
+.media img{height:170px;width:170px;}
+.media h5{font-size:30px;}
+}
+@media(max-width:680px){
+.media-body p{font-size:12px;}
+.media h5{font-size:20px;}
+}
+
+
+
+
+.media-body{margin-left:50px;}
+@media(max-width:500px){
+.media{display:block;}
+video{margin-left:50px;}
+
+}
+@media(max-width:499px){
+
+video{margin-left:5px;}
+h4{font-size:20px;}
+h5{font-size:15px;}
+.media-body{margin-left:18px;}
+}
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+
+   <!-- <img  src="{% static "images/b1.png" %}" style="width:45%;" class="w3-round">-->
+     <img  src="{{request.user.userprofile.image.url}}" style="width:45%;" class="rounded-circle account-img ml-5 mb-5"  height="100" width="100">
+
+   <!-- <h4>Welcome To Blog  {{request.user.username}}</h4>-->
+
+  </div>
+  <div class="w3-bar-block">
+    <a href="/index" onclick="w3_close()" class="w3-bar-item w3-button w3-padding  ml-5">Home</a>
+    <a href="/team" onclick="w3_close()" class="w3-bar-item w3-button w3-padding ml-5"> Team</a>
+    <a href="/viewassignment" onclick="w3_close()" class="w3-bar-item w3-button w3-padding ml-5">View assignment</a>
+    <a href="/uploadassignment" onclick="w3_close()" class="w3-bar-item w3-button w3-padding ml-5">Upload assignment</a>
+    <a href="/changepass" onclick="w3_close()" class="w3-bar-item w3-button w3-padding ml-5">Change password</a>
+  </div>
+    <form  method="get" action="/alsearch" class="form-inline ml-5 mt-5">
+         <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="search" name="t" id="search">
+
+
+    </form>
+
+
+
+     <div class="w3-panel w3-large ml-5">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>-->
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:300px">
+
+
+  <!-- Header -->
+  <header id="portfolio">
+    <a href="#"><img src="{{request.user.userprofile.image.url}}" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+   <!-- <h1><b>My Portfolio</b></h1>  -->
+
+
+
+   <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Filter:</span>
+        <button class="w3-button w3-black"><a href="/allblogs">All</a></button>
+        <button class="w3-button w3-white"><a href="/photos">images</a></button>
+        <button class="w3-button w3-white"><a href="/postpdf">Pdf</a></button>
+        <button class="w3-button w3-white"><a href="/video">Videos</a></button>
+        <button class="w3-button w3-white"><a href="/assignments">Assignments</a></button>
+
+
+
+    </div>
+    </div>
+  </header>
+
+  <!-- First Photo Grid-->
+
+
+
+
+ {% for allblogs in allblogs %}
+    {% if allblogs.image %}
+          <div class="media p">
+
+            <img class=" account-img ml-5" src="{{ allblogs.image.url}}" height="200" width="200">
+        <!-- <img  src="{{post.image.url}}" class="align-self-center mr-3" alt="..." height="100" width="100">-->
+              <div class="media-body ml-5">
+                  <h4 class="mt-0">{{ allblogs.title}}</h4>
+                  <p class="mb-0"><b>By:</b>  {{allblogs.teacher}}   at   {{ allblogs.timestamp}}</p>
+
+                  <p class="mb-0 mt-2">{{ allblogs.content| truncatechars:200}}</p>
+                  <!--<form action="{{post.pk}}/">
+                     <button type="submit">continue</button>
+                  </form>-->
+                  <a href="{% url 'd' id=allblogs.id %}" role="button" class="btn btn-primary">continue</a>
+
+              </div>
+
+        </div>
+    {% endif %}
+    &nbsp
+    {% if allblogs.pdf %}
+
+           <div class="alert alert-success ml-5 mr-5 p " role="alert">
+               <h4  class="alert-heading" ><a href="{% url 'd' id=allblogs.id %}" style="color:black;" >{{allblogs.title}}</a></h4>
+                  <p>{{allblogs.content}}</p>
+                  <a href=" {{allblogs.pdf.url}}" class="btn btn-dark btn-sm" target="_blank" >
+                          click to open
+                  </a>
+                  <hr>
+                  <p class="mb-0 mt-2"><b>By:</b>    {{allblogs.teacher}}   at    {{allblogs.timestamp}} </p>
+            </div>
+    {% endif %}
+    &nbsp
+    {% if allblogs.video %}
+
+             <div class="media ml-5 p">
+                     <video width='200' height="200" controls>
+                             <source src="{{ allblogs.video.url }}" type='video/mp4'>
+
+                     </video>
+
+                      <div class="media-body ">
+                          <a href="{% url 'd' id=allblogs.id %}" ><h4 style="color:black;">{{allblogs.title}}</h4></a>
+                           <p class="mb-0"><b>By:</b>    {{allblogs.teacher}}   at    {{allblogs.timestamp}} </p>
+                           <p class="mt-2">{{allblogs.content}}</p>
+
+                      </div>
+             </div>
+
+    {% endif %}
+     &nbsp &nbsp
+ {% endfor %}
+
+
+
+
+
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

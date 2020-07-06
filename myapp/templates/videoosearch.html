@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>vedio search</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    <center><h3>Your Search Results</h3></center><br>
+    <div class="ml-5">
+        {% if po|length < 1 %}
+            <p>No search results </p>
+            Your search query:<b>{{ b }}</b>-did not match any documents.
+            Suggestions:
+
+            <ul>
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try different keywords.</li>
+
+            </ul>
+        {% endif %}
+    </div>
+
+
+
+
+
+   {% for l in  po  %}
+       {% if l.video %}
+
+             <div class="media ml-5 mt-5">
+                 <video width='200' height="200" controls>s
+                         <source src="{{ l.video.url }}" type='video/mp4'>
+
+                 </video>
+
+                  <div class="media-body ml-5 mt-5">
+                      <a href="{% url 'd' id=l.id %}" ><h4 class="mt-0" style="color:black;">{{l.title}}</h4></a>
+                      <p class="mb-0"><b>By:</b>    {{l.teacher}}   at    {{l.timestamp}} </p>
+                       <p class="mt-0 ml-0 mt-2">{{l.content}}</p>
+
+                  </div>
+         </div>
+       {% endif %}
+   {% endfor %}
+
+</body>
+</html>

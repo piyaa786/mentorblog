@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% load static %}
+<html>
+<head>
+<title>web</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<style>
+.card{display:inline-block;}
+h2{text-decoration:underline;margin-top:20px;}
+.card:hover{transform:scale(1.3);z-index:2;box-shadow:0px 2px 20px; #fff;}
+.card:hover img{opacity:1;}
+.card{width: 20rem;}
+.bg{height:250px;width:320px;}
+@media(max-width:600px){
+    .card{width:14rem;display:block;}
+    h4{font-size:20px;}
+    h2{font-size:25px;}
+    .bg{height:200px;width:223px;}
+    }
+ @media(max-width:450px){
+    .card{width:12rem;display:block;}
+    h4{font-size:15px;}
+    h2{font-size:20px;}
+    p{font-size:12px;}
+    .bg{height:180px;width:191px;}
+    }
+
+</style>
+<body>
+<div align="center">
+<h2>Our Team</h2><br>
+<h4> It is great experience to develop this website.</h4><br>
+<div class="card" >
+  <img class="card-img-top bg" src="{% static "images/mann.jpg" %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Manpreet Kaur</h5>
+    <p>A.S.S.M Collage Mukandpur</p>
+	<p>manpreetbadhan1919@gmail.com</p>
+   <!---- <a href="#" class="btn btn-primary">Go somewhere</a>--->
+  </div>
+</div>&nbsp;&nbsp;&nbsp;
+<div class="card" >
+<img class="card-img-top bg" src="{% static "images/piyaa.jpg" %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Priya Loi</h5>
+	<p>A.S.S.M Collage Mukandpur</p>
+	<p>loipriya2@gmail.com</p>
+
+  </div>
+</div>
+</div>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+<head>
+    <title>change password</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+    body{
+background-image:url("{% static "images/forgot.jpg" %}");background-size:100% 100%;
+background-attachment:fixed;width:75%;
+height:650px;}
+</style>
+</head>
+<body>
+    <div class="site-wrap">
+            <div class="row">
+                <div class="col-md-8 blog-content" align="center" style="margin-top:20%; margin-bottom:10%; margin-left:15%;">
+		          <h5><p style="font-min-size: 400px;" class="m-auto">Your password has been changed. You may go ahead and <a href="{% url 'login' %}">Log in</a> now.</p></h5>
+	            </div>
+            </div>
+    </div>
+</body>
+</html>

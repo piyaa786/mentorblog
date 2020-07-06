@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% block content %}
+
+{% load static %}
+<html>
+<head>
+<title>about us</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+.card{max-width:100%;margin-top:100px;}
+.card-img{height:400px;}
+
+@media(max-width:500px){
+.card-img{height:300px;}
+.card-text{font-size:15px;}
+}
+@media(max-width:350px){
+.card-img{height:250px;}
+.card-text{font-size:13px;}
+h5{font-size:18px;}
+}
+
+</style>
+</head>
+<div class="card  ml-5 mr-5" >
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{% static "images/hero_1.jpg" %}" class="card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">ABOUT US</h5>
+        <p class="card-text">
+            Mentor’s Blogs system is the solution of the problem which students face in daily routine.
+            In this system user can create his/her ID and connect to his/her trainer to get the latest post on technology uploaded by trainer.
+            Trainer can upload the docs of daily topics he covered in the class expect sharing one by one to every student on mail or by any other source.
+            This is for all the education organization.
+            Mentors act as educators, guides to help individuals in daily life.
+            Mentors can push their study material to this site.
+            This is comman platform for students and teachers to interact
+
+         </p>
+         <p class="card-text ml-5">
+                Students can ask question to the mentor.Students can comments on post,and can like post.The Mentor can give assignmebt to students.
+                Students can submit their assignment in form of file.
+
+
+         </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+{% endblock %}

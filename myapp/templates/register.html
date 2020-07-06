@@ -1,0 +1,116 @@
+
+{% extends 'index.html' %}
+
+{% block content %}
+{% load static %}
+<html>
+    <head>
+<title>register</title>
+      <style>
+       body{background-size:100% 100%;
+ background-attachment:fixed;width:100%;
+ height:600px;}
+ h3{color:black;text-align:center;}
+.reg{
+max-width:400px;
+
+border-radius:20px;
+margin:auto;
+margin-top:10px;
+background:rgba(0,0,0,0.8);
+padding-left:30px;
+padding-right:30px;
+padding-top:10px;
+padding-bottom:10px;
+color:#fff;
+
+}
+h1{text-align:center;color:white;}
+input[type="text"],input[type="password"],input[type="email"],input[type="contact"],.drop{
+width:100%;
+box-sizing:border-box;
+padding:12px 5px;
+background:rgba(0,0,0,0.10);
+border:none;
+outline:none;
+border-bottom:1px dotted #fff;
+color:#fff;
+border-radius:5px;
+margin:0px;
+font-weight:bold;
+}
+
+input[type="submit"]{
+width:100%;
+padding:10px 0;
+margin-top:10px;
+outline:none;
+background:#60adde;
+opacity:0.7;
+border-radius:20px;
+font-size:20px;
+color:#fff;
+cursor:pointer;
+}
+input[type="submit"]:hover{
+background:#003366;
+opacity:0.7;
+}
+
+@media(max-width:390px){
+  .reg{
+max-width:300px;
+}
+
+input[type="text"],input[type="password"],input[type="email"],input[type="contact"],.drop{
+
+padding:15px 5px;
+
+
+}
+
+h1{font-size:30px;
+      }
+
+
+
+
+
+</style>
+    </head>
+   <body background="{% static "images/regg.jpg" %}">
+     <div>
+                {% for messages in messages %}
+                    <h3>{{messages}}</h3>
+                {% endfor %}
+     </div>
+       <div class="reg">
+
+
+          <h1>Registration Form</h1>
+         <form  method="post" action="Register">
+
+          {% csrf_token %}
+         <input type="text" name="fname" placeholder="enter first name" required><br><br>
+         <input type="text" name="lname" placeholder="enter last name" required><br><br>
+         <input type="text" name="usname" placeholder="enter full name" required><br><br>
+         <input type="email" name="email" placeholder="enter email example@gmail.com" required><br><br>
+         <input type="password" name="pass" placeholder="enter password" required><br><br>
+         <input type="password" name="pass2" placeholder="re-enter password" required><br><br>
+
+
+         <input type="submit" value="Register here...">
+
+
+
+         </form>
+
+      </div>
+
+       </body>
+</html>
+
+{% endblock %}
+
+
+

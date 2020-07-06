@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<html>
+<head>
+    <title>view assignments</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    h2{color:black;margin-top:30px;}
+    .t{width:70%;margin-top:20px;}
+</style>
+</head>
+
+<body>
+<center>
+        <h2> Assignments</h2>
+       <!-- <p>
+           <a href="{% url 'uploadassignment' %}" class="btn btn-dark btn-sm">upload assignment </a>
+        </p>-->
+        <table class="table t">
+            <thead class="thead-dark ">
+               <tr class="ml-5">
+
+                   <th scope="col">Title</th>
+                   <th scope="col">User</th>
+                   <th scope="col">Assignment</th>
+               </tr>
+            </thead>
+            <tbody>
+                {% for book in pdf %}
+                  <tr>
+
+                      <td>{{ book.title }}</td>
+                      <td>{{ book.username}}</td>
+                      <td><a href="{{ book.pdf.url }}" class="btn btn-dark btn-sm">view pdf</a>
+                      </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+ </center>
+</body>
+</html>
+
+{% endblock %}

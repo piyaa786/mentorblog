@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <style>
+    .card{width:22rem;margin-top:20px;margin-left:50px;}
+    h2{margin-left:8% ;margin-top:30px;}
+        body{
+        background-image:url("{% static "images/feedbacck.jpg" %}");background-size:100% 100%;
+        background-attachment:fixed;width:100%;
+        height:650px;}
+         h2{text-decoration:underline;}
+         .bg{height:250px;width:350px;}
+         @media(max-width:500px){
+            h2{color:blue;align:center;font-size:30px;}
+            .card{ width:20rem;}
+            .bg{height:200px;width:320px;}
+             }
+          @media(max-width:1000px){
+          h2{margin-left:100px;}
+          }
+          @media(max-width:400px){
+            h2{color:black;;font-size:20px;margin-top:30px;}
+            .bg{height:150px;width:223px;}
+            .card{ width:14rem;}
+            p{font-size:12px;}
+            }
+          @media(max-width:300px){
+            h2{color:black;;font-size:20px;}
+            .card{ width:13rem;margin-left:10px;}
+           }
+    </style>
+</head>
+<body>
+<div class="container " align="left ">
+    <h2 >User Profile</h2><br>
+    <div class="card" style="" >
+       <img class="card-img-top bg" src="{{request.user.userprofile.image.url}}" alt="Card image cap">
+            <div class="card-body">
+            <h3 class="card-title" align="center">{{request.user.username}}</h3>
+                <p>{{request.user.email}}</p>
+                <p>{{request.user.userprofile.dob}}</p>
+                <p>{{request.user.userprofile.bio}}</p>
+                <p>{{request.user.userprofile.city}}</p>
+            </div>
+    </div>&nbsp;&nbsp;&nbsp;
+
+</div>
+</body>
+</html>
+{% endblock %}
+

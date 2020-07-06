@@ -1,0 +1,207 @@
+
+
+
+{% load static %}
+{% load extras %}
+{% load humanize %}
+<html>
+<title>detail</title>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0" nonce="xTjmeGkp"></script>
+</head>
+<style>
+
+    .bg{margin-left:60px;}
+    .n{width:85%;}
+    p{margin-left:40px;margin-right:10px;}
+    h5{margin-left:40px;}
+    .container{margin-left:55px;}
+
+
+    .bl video{width:100%;height:50%;margin-top:15px;}
+    .bl h5{margin-left:0px;}
+    .bl p{margin-left:0px;}
+
+
+
+    @media(max-width:550px){
+    p{font-size:15px;margin-left:5px;margin-right:5px;}
+    .bg{margin-left:15px;}
+    h1{font-size:25px;}
+    h5{font-size:15px;}
+
+    }
+    @media(max-width:715px){
+    p{font-size:15px;}
+    .bg{margin-left:30px;}
+    h1{font-size:30px;}
+    h5{font-size:15px;}
+    }
+    @media(max-width:360px){
+    p{font-size:15px;margin-left:10px;margin-right:5px;}
+    .bg{margin-left:20px;}
+    h1{font-size:20px;}
+    h5{font-size:13px;margin-left:10px;}
+    }
+
+    @media(max-width:610px){
+    .bl{margin-left:10px;}
+    .bl video{width:90%;height:45%;}
+    }
+
+    @media(max-width:300px){
+    .bl{margin-left:7px;}
+    .bl video{height:40%;}
+    .bl p{font-size:14px;}
+    .bl h5{font-size:16px;}
+    }
+
+
+</style>
+<body>
+
+ {% for post in allpost %}
+    {% if post.image %}
+        <div  style="width:90%;" class="  shadow-lg bg-white mt-5 bg">
+            <div class="card-body   ">
+                <h2 class="card-title text-center mb-5">{{post.title}}</h2>
+                <p class="card-text">{{post.content}}</p>
+                <h5 class="card-text">{{post.timestamp}}</h5>
+            </div>
+        </div>
+    {% endif %}
+    {% if post.video %}
+          <div class="container bl">
+                 <video controls>
+                         <source src="{{ post.video.url }}" type='video/mp4'>
+
+                 </video>
+
+                      <h5>{{post.title}}</h5>
+                       <p>{{post.content}}</p>
+
+
+         </div>
+
+    {% endif %}
+    {% if post.pdf %}
+      <div class="alert alert-success ml-5 mt-5 n" role="alert">
+                      <h4 class="alert-heading">{{post.title}}</h4>
+                      <p>{{post.content}}</p>
+                      <a href=" {{post.pdf.url}}" class="btn btn-dark btn-sm" target="_blank" >
+                              click to open
+                      </a>
+                      <hr>
+          <p class="mb-0"> <b>By:</b>  {{post.teacher}}    at  {{post.timestamp}} </p>
+      </div>
+
+    {% endif %}
+     <br><br>
+        <hr>
+        <br>
+     <div class="container">
+
+            <form action="{% url 'like-post' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{post.id}}">
+
+                {% if user not in post.liked.all %}
+                <button type="submit" class="btn btn-primary btn-sm">Like</button>
+                {% else %}
+                <button type="submit" class="btn btn-danger btn-sm">Unlike</button>
+                {% endif %}
+                <div class="ml-5  fb-share-button" data-href="http://127.0.0.1:8000/13/{{post.id}}" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2F13%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+            </form>
+
+            <strong>{{ post.liked.all.count}}Likes</strong>
+     </div>
+
+    <div class="container" style="margin-top:20px;">
+
+            <h3>Comments({{comments.count}})</h3>
+
+                {% if user.is_authenticated %}
+                   <form action="postcomment" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleInputEmail">Post Comment</label>
+                            <input type="text" class="Form-control" name="comment">
+                        </div>
+                        <input type="hidden" name="postsno" value={{post.id}}>
+                        <input type="hidden" name="parentsno" value="">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                   </form>
+
+            {% for comment in comments %}
+            <div class="row my-3 d">
+                 <div class="col-md-1">
+                       <img class="rounded rounded-circle mx-auto w-100 d-block  p-2 " src="{% static "images/comment.png" %}">
+                </div>
+                <div class="col-md-11">
+                    <b>{{comment.user.username}}</b> at   {{comment.timestamp|naturaltime}}
+                    <div>{{comment.comment}}</div>
+                    <div class="reply mx-0">
+
+                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#replybox{{comment.sno}}" aria-expanded="false" aria-controls="replybox{{comment.sno}}">
+                                     Reply
+                                </button>
+
+                                <div class="collapse" id="replybox{{comment.sno}}">
+                                    <div class="card card-body my-2">
+                                         <form action="postcomment" method="post">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label for="comment">Post a Reply</label>
+                                                    <input type="text" class="form-control" name="comment">
+                                                    <input type="hidden" name="parentsno" value={{comment.sno}}>
+                                                </div>
+                                                <input type="hidden" name="postsno" value={{post.id}}>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                         </form>
+
+                                    </div>
+                                </div>
+
+                         <div class="replies my-2">
+                            {% for reply in replydict|get_val:comment.sno %}
+                               <div class="row my-3">
+                                    <div class="col-md-1">
+
+                                        <img class="rounded rounded-circle mx-auto  w-100 d-block  p-2 " src="{% static "images/comment.png" %}">
+                                    </div>
+                                    <div class="col-md-11">
+
+                                          <b>{{reply.user.username}}</b> at   {{reply.timestamp|naturaltime}}
+                                          <div>{{reply.comment}}</div>
+
+                                    </div>
+
+
+                               </div>
+
+                            {% endfor %}
+                         </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+ {% endfor %}
+
+
+
+
+</div>
+</body>
+</html>
+
+

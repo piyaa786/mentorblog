@@ -1,0 +1,196 @@
+{% load static %}
+<html>
+<head>
+<title>index</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/s.css' %}">
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/foo.css' %}">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<!--fotter-->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+<!--fotter end-->
+<style>
+.bgimg{background-size:100% 100%;
+ background-attachment:fixed;width:100%;
+ height:650px;}
+.bgimg{background-image:url("{% static "images/index.jpg" %}");
+.n{margin-top:20px;}
+
+
+</style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+     <div class="container">
+		<a href="#" class="navbar-brand text-warning font-weight-bold">BLOGGER</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+   		<div class="collapse navbar-collapse text-center" id="collapsenavbar">
+	   			<ul class="navbar-nav ml-auto ">
+
+
+					{% if user.is_authenticated %}
+						<li class="nav-item">
+								<a href="/index" class="nav-link text-white">HOME</a>
+						</li>
+						<li class="nav-item">
+								<a href="/allblogs" class="nav-link text-white">BLOG</a>
+						</li>
+						<li class="nav-item">
+								<a href="/editprofile" class="nav-link text-white">PROFILE UPDATE</a>
+						</li>
+						<li class="nav-item">
+								<a href="/viewprofile" class="nav-link text-white">VIEW PROFILE</a>
+						</li>
+					     <li class="nav-item">
+								<a href="/feedback" class="nav-link text-white">FEEDBACK</a>
+						</li>
+
+						<li class="nav-item">
+								<a href="/logout" class="nav-link text-white">LOGOUT</a>
+						</li>
+					    <li class="nav-item ml-3">
+								<a href="/editprofile" class="nav-link text-white">{{user.username}}</a>
+						</li>
+
+
+
+					{% else %}
+						<li class="nav-item">
+	     					<a href="/index" class="nav-link text-white">HOME</a>
+	       			    </li>
+					    <li class="nav-item">
+	     					<a href="/register" class="nav-link text-white">REGISTRATION</a>
+						</li>
+						<li class="nav-item">
+								<a href="/login" class="nav-link text-white">LOGIN</a>
+						</li>
+						<li class="nav-item">
+								<a href="/feedback" class="nav-link text-white">FEEDBACK</a>
+						</li>
+
+
+					{% endif %}
+				</ul>
+		</div>
+     </div>
+   </nav>
+
+{% block content %}
+<div class="bgimg">
+</div>
+
+<section>
+    <div class="page-wrapper">
+        <div class="post-slider">
+             <h1 class="slider-title mt-5">LANGUAGES</h1>
+             <i class="fas fa-chevron-left prev"></i>
+             <i class="fas fa-chevron-right next"></i>
+             <div class="post-wrapper">
+                 <div class="post">
+                      <img src="{% static "images/javascript.jpg" %}" alt="" class="slider-image">
+
+                 </div>
+				  <div class="post">
+                      <img src="{% static "images/java.png" %}" alt="" class="slider-image">
+
+
+                 </div>
+				  <div class="post">
+                      <img src="{% static "images/php1.jpg" %}" alt="" class="slider-image">
+
+
+                 </div>
+				  <div class="post">
+                      <img src="{% static "images/python.png" %}" alt="" class="slider-image">
+
+                 </div>
+				  <div class="post">
+                      <img src="{% static "images/swift 1.jpg" %}" alt="" class="slider-image">
+
+
+                 </div>
+
+
+             </div>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+	<footer class="footer-distributed mt-5">
+
+			<div class="footer-left">
+
+				<h3>BLOGGER</h3>
+
+
+                            <p style="width:50%;color:white">Mentor share their knowledge experience with the student, and try to solve the students query</p>
+
+
+
+
+				<div class="footer-icons">
+
+					<a href="/index"><i class="fa fa-facebook"></i></a>
+					<a href="/index"><i class="fa fa-twitter"></i></a>
+					<a href="/index"><i class="fa fa-linkedin"></i></a>
+					<a href="/index"><i class="fa fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+                <p class="footer-links">
+
+					<a href="/index">Home</a><br>
+
+						<a href="/index">Blog</a><br>
+
+						<a href="index">Profile</a><br>
+
+						<a href="/aboutus">About</a><br>
+
+
+
+					   <a href="/feedback">Feedback</a>
+
+				</p>
+
+
+			</div>
+
+		</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="{% static "javascript/c.js" %}"></script>
+
+</body>
+</html>
+
+

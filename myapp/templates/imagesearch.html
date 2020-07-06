@@ -1,0 +1,63 @@
+{% load static %}
+<html>
+<head>
+    <title>images search</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+    <center><h3>Your Search Results</h3></center><br>
+    <div class="ml-5">
+        {% if allposts|length < 1 %}
+            <p>No search results </p>
+            Your search query:<b>{{ query }}</b>-did not match any documents.
+            Suggestions:
+
+            <ul>
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try different keywords.</li>
+
+            </ul>
+        {% endif %}
+    </div>
+
+
+ {% for p in allposts %}
+    {% if p.image %}
+        <div class="media p">
+
+            <img class="account-img ml-5" src="{{p.image.url}}" height="200" width="200">
+        <!-- <img  src="{{post.image.url}}" class="align-self-center mr-3" alt="..." height="100" width="100">-->
+              <div class="media-body ml-5">
+                  <h5 class="mt-0">{{p.title}}</h5>
+
+                  <p class="mb-2"><b>By:</b>{{p.teacher}}  at   {{p.timestamp}}</p>
+                  <p class="mb-0">{{p.content| truncatechars:100}}</p>
+                  <!--<form action="{{post.pk}}/">
+                     <button type="submit">continue</button>
+                  </form>-->
+                  <a href="{% url 'd' id=p.id %}" role="button" class="btn btn-primary">continue</a>
+              </div>
+        </div>
+
+
+
+    {% endif %}
+ {% endfor %}
+
+
+
+
+
+
+</body>
+</html>

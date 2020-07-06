@@ -1,0 +1,59 @@
+
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload assignment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body{
+	    background-image:url("{% static "images/upload.jpg" %}");background-size:100% 100%;
+	    background-attachment:fixed;width:100%;
+ 	    height:650px;}
+ 	    label{color:black;}
+ 	   .form-container{margin-top:150px;margin-left:100px;}
+ 	   .controls .select  value{width:50px;}
+
+ 	   @media(max-width:500px){
+ 	          .form-container{margin-top:50px;margin-left:0px;}
+ body{
+	   width:100%;
+ 	    }
+
+       }
+        @media(max-width:768px){
+ 	          .form-container{margin-top:50px;margin-left:20px;}
+ body{
+	   width:100%;
+ 	    }
+
+       }
+    </style>
+</head>
+<body>
+<section class="container-fluid">
+    <section class="row justify-content-left">
+        <section class="col-10 col-sm-5 col-md-4">
+                <form method="POST" class="form-container" enctype="multipart/form-data">
+                          {% csrf_token %}
+                    <div class="form-group">
+                         <label><h2>Submit Assignment</h2></label>
+
+                            {{h_form|crispy}}
+                    <button type="submit" class="btn btn-dark ">Upload File</button>
+                </form>
+        </section>
+    </section>
+
+</section>
+
+</body>
+</html>
+
+{% endblock %}
